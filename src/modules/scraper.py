@@ -112,6 +112,8 @@ def searchWalmart(query, df_flag, currency):
             trending = trending[0]
         else:
             trending = None
+
+        image = res.find("img",{"data-testid":"productTileImage"})
         product = formatResult(
             "walmart",
             titles,
@@ -122,7 +124,7 @@ def searchWalmart(query, df_flag, currency):
             trending,
             df_flag,
             currency,
-            images
+            image
         )
         products.append(product)
         # print(products)
@@ -155,9 +157,9 @@ def searchEtsy(query, df_flag, currency):
         ratings = item.select("span.screen-reader-only")
         num_ratings = item.select("span.wt-text-body-01")
         trending = item.select("span.wt-badge")
-        imgs = item.findAll("img")
-        for i in range(0, len(imgs)):
-            images.append(imgs[i].get("src"))
+        image = item.find("img").get("src")
+        # for i in range(0, len(imgs)):
+        #     images.append(imgs[i].get("src"))
         # images.append(item.findAll("img"))
         # print(images)
         if len(trending) > 0:
@@ -174,7 +176,7 @@ def searchEtsy(query, df_flag, currency):
             trending,
             df_flag,
             currency,
-            images
+            image
         )
         products.append(product)
     return products
@@ -191,10 +193,10 @@ def searchGoogleShopping(query, df_flag, currency):
     page = httpsGet(URL)
     results = page.findAll("div", {"class": "sh-dgr__grid-result"})
 
-    images = []
-    imgs = page.findAll("img", {"data-image-src": True})
-    for i in range(0, len(imgs)):
-        images.append(imgs[i].get("data-image-src"))
+    # images = []
+    # imgs = page.findAll("img", {"data-image-src": True})
+    # for i in range(0, len(imgs)):
+    #     images.append(imgs[i].get("data-image-src"))
 
     # print(images)
 
@@ -219,6 +221,16 @@ def searchGoogleShopping(query, df_flag, currency):
             trending = trending[0]
         else:
             trending = None
+
+        # print(res)
+        print("==============================================")
+        image = res.find("img", {"data-image-src": True})
+        if image is not None:
+            image_url = image.get("data-image-src").strip()  # Use strip() to remove any leading/trailing whitespace
+            print(image_url)
+        else:
+            image_url = None
+        # print(image)
         product = formatResult(
             "google",
             titles,
@@ -229,7 +241,7 @@ def searchGoogleShopping(query, df_flag, currency):
             trending,
             df_flag,
             currency,
-            images
+            image_url
         )
         products.append(product)
     return products
@@ -250,7 +262,7 @@ def searchBJs(query, df_flag, currency):
     imgs = page.findAll("img", {"class": "img-link"})
     for i in range(0, len(imgs)):
         images.append(imgs[i].get("src"))
-        
+
     products = []
     for res in results:
         titles, prices, links = (
@@ -265,12 +277,16 @@ def searchBJs(query, df_flag, currency):
             trending = trending[0]
         else:
             trending = None
+
+        image = res.find("img", {"class" : "img-link"}).get("src")
+        print("----------------------------------")
         product = formatResult(
-            "bjs", titles, prices, links, "", num_ratings, trending, df_flag, currency, images
+            "bjs", titles, prices, links, "", num_ratings, trending, df_flag, currency, image
         )
         if len(ratings) != 0:
             product["rating"] = len(ratings)
         products.append(product)
+        # print(products)
     return products
 
 
