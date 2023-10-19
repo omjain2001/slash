@@ -47,7 +47,9 @@ def searchAmazon(query, df_flag, currency):
     query = formatSearchQuery(query)
     URL = f"https://www.amazon.com/s?k={query}"
     page = httpsGet(URL)
+    print(page.text)
     results = page.findAll("div", {"data-component-type": "s-search-result"})
+    print(results)
     products = []
     for res in results:
         titles, prices, links = (
@@ -86,8 +88,15 @@ def searchWalmart(query, df_flag, currency):
     query = formatSearchQuery(query)
     URL = f"https://www.walmart.com/search?q={query}"
     page = httpsGet(URL)
+    print(page.text)
     results = page.findAll("div", {"data-item-id": True})
+    imgs = page.findAll("img",{"data-testid":"productTileImage"})
+    ratings = page.findAll("span", {"class":"w_iUH7"})
     # print(results)
+    images = []
+    for i in range(0, len(imgs)):
+        images.append(imgs[i].get('src'))
+
     products = []
     pattern = re.compile(r"out of 5 Stars")
     for res in results:
@@ -113,8 +122,10 @@ def searchWalmart(query, df_flag, currency):
             trending,
             df_flag,
             currency,
+            images
         )
         products.append(product)
+        # print(products)
     return products
 
 
@@ -132,6 +143,7 @@ def searchEtsy(query, df_flag, currency):
     }
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.content, "lxml")
+    images = []
     for item in soup.select(".wt-grid__item-xs-6"):
         str = item.select("a")
         if str == []:
@@ -156,6 +168,7 @@ def searchEtsy(query, df_flag, currency):
             trending,
             df_flag,
             currency,
+            images
         )
         products.append(product)
     return products
@@ -171,6 +184,8 @@ def searchGoogleShopping(query, df_flag, currency):
     URL = f"https://www.google.com/search?tbm=shop&q={query}"
     page = httpsGet(URL)
     results = page.findAll("div", {"class": "sh-dgr__grid-result"})
+    print(results)
+    images = []
     products = []
     pattern = re.compile(r"[0-9]+ product reviews")
     for res in results:
@@ -201,6 +216,7 @@ def searchGoogleShopping(query, df_flag, currency):
             trending,
             df_flag,
             currency,
+            images
         )
         products.append(product)
     return products
@@ -216,6 +232,8 @@ def searchBJs(query, df_flag, currency):
     URL = f"https://www.bjs.com/search/{query}"
     page = httpsGet(URL)
     results = page.findAll("div", {"class": "product"})
+
+    images = []
     # print(results)
     products = []
     for res in results:
@@ -232,7 +250,7 @@ def searchBJs(query, df_flag, currency):
         else:
             trending = None
         product = formatResult(
-            "bjs", titles, prices, links, "", num_ratings, trending, df_flag, currency
+            "bjs", titles, prices, links, "", num_ratings, trending, df_flag, currency, images
         )
         if len(ratings) != 0:
             product["rating"] = len(ratings)
