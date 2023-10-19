@@ -21,7 +21,8 @@ Checkout our newest Features! Mini Version and Full version now showcasing new s
 
 # :exclamation: Needed Software
 1. Python 3 (Version 3.9.7 or lower)
-2. Flask
+2. Pip
+3. Flask
 
 # :rocket: Installation
 
