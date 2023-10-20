@@ -88,11 +88,11 @@ def searchWalmart(query, df_flag, currency):
     query = formatSearchQuery(query)
     URL = f"https://www.walmart.com/search?q={query}"
     page = httpsGet(URL)
-    # print(page.text)
+
     results = page.findAll("div", {"data-item-id": True})
     imgs = page.findAll("img",{"data-testid":"productTileImage"})
     ratings = page.findAll("span", {"class":"w_iUH7"})
-    # print(results)
+
     images = []
     for i in range(0, len(imgs)):
         images.append(imgs[i].get('src'))
@@ -124,10 +124,10 @@ def searchWalmart(query, df_flag, currency):
             trending,
             df_flag,
             currency,
-            image
+            str(image)
         )
         products.append(product)
-        # print(products)
+
     return products
 
 
@@ -147,21 +147,18 @@ def searchEtsy(query, df_flag, currency):
     soup = BeautifulSoup(response.content, "lxml")
     images = []
     for item in soup.select(".wt-grid__item-xs-6"):
-        str = item.select("a")
-        if str == []:
+        str2 = item.select("a")
+        if str2 == []:
             continue
         else:
-            links = str
-        # print(str)
+            links = str2
+
         titles, prices = (item.select("h3")), (item.select(".currency-value"))
         ratings = item.select("span.screen-reader-only")
         num_ratings = item.select("span.wt-text-body-01")
         trending = item.select("span.wt-badge")
         image = item.find("img").get("src")
-        # for i in range(0, len(imgs)):
-        #     images.append(imgs[i].get("src"))
-        # images.append(item.findAll("img"))
-        # print(images)
+
         if len(trending) > 0:
             trending = trending[0]
         else:
@@ -176,7 +173,7 @@ def searchEtsy(query, df_flag, currency):
             trending,
             df_flag,
             currency,
-            image
+            str(image)
         )
         products.append(product)
     return products
@@ -192,13 +189,6 @@ def searchGoogleShopping(query, df_flag, currency):
     URL = f"https://www.google.com/search?tbm=shop&q={query}"
     page = httpsGet(URL)
     results = page.findAll("div", {"class": "sh-dgr__grid-result"})
-
-    # images = []
-    # imgs = page.findAll("img", {"data-image-src": True})
-    # for i in range(0, len(imgs)):
-    #     images.append(imgs[i].get("data-image-src"))
-
-    # print(images)
 
     products = []
     pattern = re.compile(r"[0-9]+ product reviews")
@@ -222,15 +212,12 @@ def searchGoogleShopping(query, df_flag, currency):
         else:
             trending = None
 
-        # print(res)
-        print("==============================================")
         image = res.find("img", {"data-image-src": True})
         if image is not None:
             image_url = image.get("data-image-src").strip()  # Use strip() to remove any leading/trailing whitespace
-            print(image_url)
         else:
             image_url = None
-        # print(image)
+
         product = formatResult(
             "google",
             titles,
@@ -241,7 +228,7 @@ def searchGoogleShopping(query, df_flag, currency):
             trending,
             df_flag,
             currency,
-            image_url
+            str(image_url)
         )
         products.append(product)
     return products
@@ -257,11 +244,6 @@ def searchBJs(query, df_flag, currency):
     URL = f"https://www.bjs.com/search/{query}"
     page = httpsGet(URL)
     results = page.findAll("div", {"class": "product"})
-    # print(results)
-    images = []
-    imgs = page.findAll("img", {"class": "img-link"})
-    for i in range(0, len(imgs)):
-        images.append(imgs[i].get("src"))
 
     products = []
     for res in results:
@@ -279,9 +261,9 @@ def searchBJs(query, df_flag, currency):
             trending = None
 
         image = res.find("img", {"class" : "img-link"}).get("src")
-        print("----------------------------------")
+        
         product = formatResult(
-            "bjs", titles, prices, links, "", num_ratings, trending, df_flag, currency, image
+            "bjs", titles, prices, links, "", num_ratings, trending, df_flag, currency, str(image)
         )
         if len(ratings) != 0:
             product["rating"] = len(ratings)
