@@ -56,10 +56,11 @@ python3 -m src.slash --search socks
 ## :computer: Updated UI
 
 1. UI looks more polished
-   a. Navbar
-   b. Filter bar
-2. Fixed responsiveness bugs with the search bar
-3. A smoother dropdown added to the UI
+2. Added new components to the UI including:
+   * Navbar
+   * Filter bar
+3. Fixed responsiveness bugs with the search bar
+4. A smoother dropdown added to the UI
 
 INSERT IMAGE HERE
 
