@@ -74,6 +74,12 @@ INSERT IMAGE HERE
 
 Increased code coverage from ```70%``` to ```a new percentage```.
 
+## :red_car: Created Diagram for Code Flow
+
+Made a diagram to digest how the code flows for future contributors.
+
+<p align="center"><img width="500" src="./docs/SlashDesignDiagram.png"></p>
+
 # :golf: The Basics, Flags and Args 
 
 
