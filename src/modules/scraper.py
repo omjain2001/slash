@@ -114,6 +114,10 @@ def searchWalmart(query, df_flag, currency):
             trending = None
 
         image = res.find("img",{"data-testid":"productTileImage"})
+        if image is not None:
+            image_url = image.get("src").strip()  # Use strip() to remove any leading/trailing whitespace
+        else:
+            image_url = None
         product = formatResult(
             "walmart",
             titles,
@@ -124,7 +128,7 @@ def searchWalmart(query, df_flag, currency):
             trending,
             df_flag,
             currency,
-            str(image)
+            str(image_url)
         )
         products.append(product)
 
