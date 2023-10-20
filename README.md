@@ -26,7 +26,7 @@ Checkout our newest Features! Mini Version and Full version now showcasing new s
 
 # :rocket: Installation
 
-## :floppy_disk: Command Line Version
+## :floppy_disk: Initial Steps
 
 1. Access the Github repository from your computer. 
  - First, pre-install [git](https://git-scm.com/) on  your machine. 
@@ -44,17 +44,11 @@ cd slash
 ```
 pip3 install -r requirements.txt
 ```
-3. Running the program
-
-- Use the python command to run the ```slash.py``` file.
-```
-python3 -m src.slash --search socks
-```
 <p>
 
 ## :key: Using the UI Version
 
-1. After completing the <a href="#floppy_disk-command-line-version">Command Line Version instructions</a> and all project dependencies are installed. 
+1. After completing the <a href="#floppy_disk-initial-steps">Initial Steps</a> and all project dependencies are installed. 
 
 2. Make sure you are in the base directory. 
 3. Use the ```flask run``` command.
@@ -97,6 +91,10 @@ Increased code coverage from ```70%``` to ```a new percentage```.
 Made a diagram to digest how the code flows for future contributors.
 
 <p align="center"><img width="500" src="./docs/SlashDesignDiagram.png"></p>
+
+## :: Deprecated Feature
+
+We removed the command line interface as the UI is easier for the average user.
 
 # :golf: The Basics, Flags and Args 
 
