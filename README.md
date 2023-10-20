@@ -26,6 +26,8 @@ Checkout our newest Features! Mini Version and Full version now showcasing new s
 
 # :rocket: Installation
 
+## :floppy_disk: Initial Steps
+
 1. Access the Github repository from your computer. 
  - First, pre-install [git](https://git-scm.com/) on  your machine. 
  - Then, clone the following repo:
@@ -42,14 +44,24 @@ cd slash
 ```
 pip3 install -r requirements.txt
 ```
-3. Running the program
-
-- Use the python command to run the ```slash.py``` file.
-```
-python3 -m src.slash --search socks
-```
 <p>
 
+## :key: Using the UI Version
+
+1. After completing the <a href="#floppy_disk-initial-steps">Initial Steps</a> and all project dependencies are installed. 
+
+2. Make sure you are in the base directory. 
+3. Use the ```flask run``` command.
+```
+MAC
+export FLASK_APP=./src/modules/app
+flask run
+
+Windows
+set FLASK_APP=.\src\modules\app 
+flask run
+```
+4. Once flask is running, open your internet browser and type ```http://127.0.0.1:5000/``` into the search bar.
 
 # :dizzy: What's New in Phase 4
 
@@ -79,6 +91,10 @@ Increased code coverage from ```70%``` to ```a new percentage```.
 Made a diagram to digest how the code flows for future contributors.
 
 <p align="center"><img width="500" src="./docs/SlashDesignDiagram.png"></p>
+
+## :: Deprecated Feature
+
+We removed the command line interface as the UI is easier for the average user.
 
 # :golf: The Basics, Flags and Args 
 
@@ -274,9 +290,11 @@ File Name: C:\Anant\NCSU\slash_test_csv\socks211104_1223.csv
 <p align="center"><img width="700" src="./assets/SlashAnimation.gif"></p>
 
 - Creating ordering and payment functionality for customers to directly order from command line
+- Take coupons or promo codes into consideration
 - Provide parameters like in-store availability or inventory
 - Increase the number of filters.
 - Add login for the web version.
+- Host on a docker container
 
 
 :thought_balloon: Use Case
