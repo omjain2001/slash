@@ -307,4 +307,3 @@ We saw potential in this as e-commerce is a very common tool that people use to 
 ## :email: Support
 
 For any queries and help, please reach out to us at: neerua08@gmail.com
-
