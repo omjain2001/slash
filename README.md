@@ -292,9 +292,11 @@ File Name: C:\Anant\NCSU\slash_test_csv\socks211104_1223.csv
 <p align="center"><img width="700" src="./assets/SlashAnimation.gif"></p>
 
 - Creating ordering and payment functionality for customers to directly order from command line
+- Take coupons or promo codes into consideration
 - Provide parameters like in-store availability or inventory
 - Increase the number of filters.
 - Add login for the web version.
+- Host on a docker container
 
 
 :thought_balloon: Use Case
