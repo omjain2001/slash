@@ -292,6 +292,8 @@ File Name: C:\Anant\NCSU\slash_test_csv\socks211104_1223.csv
 - Slash in its current form is for people who have some understanding of Python and are comfortable with using the command line interface to interact with systems.
 - Future updates aim to encompass a wide variety of users irrespective of their computer knowledge and background.
 
+# :bulb: Motivation
+We saw potential in this as e-commerce is a very common tool that people use to buy online. Even so, it can be hard to find the best item based on ratings and prices. This usually requires several tabs for Amazon, Walmart, and other stores. With Slash, this can be made easy, which resonated with the group. We strived to add to this as we would like a fully functioning version of Slash in order to make shopping online easier. 
 
 # :sparkles: Contributors
 
