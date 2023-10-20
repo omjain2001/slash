@@ -55,7 +55,23 @@ python3 -m src.slash --search socks
 
 ## :computer: Updated UI
 
-NEED TO ADD CONTENT BASED ON WHAT WE DID
+1. UI looks more polished
+   a. Navbar
+   b. Filter bar
+2. Fixed responsiveness bugs with the search bar
+3. A smoother dropdown added to the UI
+
+INSERT IMAGE HERE
+
+## :camera: Scraping images
+
+We successfully scraped images from websites. This can be displayed in the table.
+
+INSERT IMAGE HERE
+
+## :train2: Added code coverage
+
+Increased code coverage from ```70%``` to ```a new percentage```.
 
 # :golf: The Basics, Flags and Args 
 
@@ -278,7 +294,6 @@ File Name: C:\Anant\NCSU\slash_test_csv\socks211104_1223.csv
 - Hemil Mehta
 
 ## :email: Support
-
 
 For any queries and help, please reach out to us at: neerua08@gmail.com
 
