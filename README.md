@@ -26,6 +26,8 @@ Checkout our newest Features! Mini Version and Full version now showcasing new s
 
 # :rocket: Installation
 
+## :floppy_disk: Command Line Version
+
 1. Access the Github repository from your computer. 
  - First, pre-install [git](https://git-scm.com/) on  your machine. 
  - Then, clone the following repo:
@@ -50,6 +52,22 @@ python3 -m src.slash --search socks
 ```
 <p>
 
+## :key: Using the UI Version
+
+1. After completing the <a href="#floppy_disk-command-line-version">Command Line Version instructions</a> and all project dependencies are installed. 
+
+2. Make sure you are in the base directory. 
+3. Use the ```flask run``` command.
+```
+MAC
+export FLASK_APP=./src/modules/app
+flask run
+
+Windows
+set FLASK_APP=.\src\modules\app 
+flask run
+```
+4. Once flask is running, open your internet browser and type ```http://127.0.0.1:5000/``` into the search bar.
 
 # :dizzy: What's New in Phase 4
 
