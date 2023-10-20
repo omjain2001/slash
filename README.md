@@ -1,16 +1,16 @@
-[CSC 510 - Project 3 - Repo Presentation](https://ncsu.zoom.us/rec/share/LX3fKUKuKso1_XNpdK2TvEdADZzpYdMughe_9e_f3-zdzuYhFoxz8k6mHf_vcJOj.QlqORp3KuCJi_boa?startTime=1638480222000)
+INSERT VIDEO HERE
 
 <p align="center"><img width="500" src="./assets/slash.png"></p>
 
-[![GitHub license](https://img.shields.io/github/license/TommasU/slash)](https://github.com/TommasU/slash/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/jashgopani/slash)](https://github.com/jashgopani/slash/blob/main/LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5739350.svg)](https://doi.org/10.5281/zenodo.5739350)
 ![Github](https://img.shields.io/badge/language-python-red.svg)
-[![GitHub issues](https://img.shields.io/github/issues/TommasU/slash)](https://github.com/TommasU/slash/issues)
-[![Github closes issues](https://img.shields.io/github/issues-closed-raw/TommasU/slash)](https://github.com/TommasU/slash/issues?q=is%3Aissue+is%3Aclosed)
-[![Github closed pull requests](https://img.shields.io/github/issues-pr-closed/SEProjGrp5/slash)](https://github.com/TommasU/slash/pulls?q=is%3Apr+is%3Aclosed)
+[![GitHub issues](https://img.shields.io/github/issues/jashgopani/slash)](https://github.com/jashgopani/slash/issues)
+[![Github closes issues](https://img.shields.io/github/issues-closed-raw/jashgopani/slash)](https://github.com/jashgopani/slash/issues?q=is%3Aissue+is%3Aclosed)
+[![Github closed pull requests](https://img.shields.io/github/issues-pr-closed/SEProjGrp5/slash)](https://github.com/jashgopani/slash/pulls?q=is%3Apr+is%3Aclosed)
 [![codecov](https://codecov.io/gh/TommasU/slash/branch/main/graph/badge.svg?token=MGTU44PI4F)](https://codecov.io/gh/TommasU/slash)
-[![Pylint](https://github.com/SEProjGrp5/slash/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/TommasU/slash/actions/workflows/pylint.yml)
-[![Python Style Checker](https://github.com/SEProjGrp5/slash/actions/workflows/style_checker.yml/badge.svg?branch=main)](https://github.com/TommasU/slash/actions/workflows/style_checker.yml)
+[![Pylint](https://github.com/SEProjGrp5/slash/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/jashgopani/slash/actions/workflows/pylint.yml)
+[![Python Style Checker](https://github.com/SEProjGrp5/slash/actions/workflows/style_checker.yml/badge.svg?branch=main)](https://github.com/jashgopani/slash/actions/workflows/style_checker.yml)
 
 Slash is a tool that scrapes the most popular e-commerce websites to get the best deals on searched items across these websites. 
 - **Fast**: With slash, you can save over 50% of your time by comparing deals across websites within seconds
@@ -55,7 +55,30 @@ python3 -m src.slash --search socks
 
 ## :computer: Updated UI
 
-NEED TO ADD CONTENT BASED ON WHAT WE DID
+1. UI looks more polished
+2. Added new components to the UI including:
+   * Navbar
+   * Filter bar
+3. Fixed responsiveness bugs with the search bar
+4. A smoother dropdown added to the UI
+
+INSERT IMAGE HERE
+
+## :camera: Scraping images
+
+We successfully scraped images from websites. This can be displayed in the table.
+
+INSERT IMAGE HERE
+
+## :train2: Added code coverage
+
+Increased code coverage from ```70%``` to ```a new percentage```.
+
+## :red_car: Created Diagram for Code Flow
+
+Made a diagram to digest how the code flows for future contributors.
+
+<p align="center"><img width="500" src="./docs/SlashDesignDiagram.png"></p>
 
 # :golf: The Basics, Flags and Args 
 
@@ -248,6 +271,8 @@ File Name: C:\Anant\NCSU\slash_test_csv\socks211104_1223.csv
 
 # :muscle: What's next for future development?
 
+<p align="center"><img width="700" src="./assets/SlashAnimation.gif"></p>
+
 - Creating ordering and payment functionality for customers to directly order from command line
 - Provide parameters like in-store availability or inventory
 - Increase the number of filters.
@@ -269,6 +294,8 @@ File Name: C:\Anant\NCSU\slash_test_csv\socks211104_1223.csv
 - Slash in its current form is for people who have some understanding of Python and are comfortable with using the command line interface to interact with systems.
 - Future updates aim to encompass a wide variety of users irrespective of their computer knowledge and background.
 
+# :bulb: Motivation
+We saw potential in this as e-commerce is a very common tool that people use to buy online. Even so, it can be hard to find the best item based on ratings and prices. This usually requires several tabs for Amazon, Walmart, and other stores. With Slash, this can be made easy, which resonated with the group. We strived to add to this as we would like a fully functioning version of Slash in order to make shopping online easier. 
 
 # :sparkles: Contributors
 
@@ -278,6 +305,5 @@ File Name: C:\Anant\NCSU\slash_test_csv\socks211104_1223.csv
 - Hemil Mehta
 
 ## :email: Support
-
 
 For any queries and help, please reach out to us at: neerua08@gmail.com
