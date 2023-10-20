@@ -98,8 +98,25 @@ We removed the command line interface as the UI is easier for the average user.
 
 # :golf: How to Use the UI 
 
+## Search and Filters
 
-INSERT USE CASES FOR UI
+There are filters to show how many items are displayed and search for specific items. On top of this, you can pick your currency type.
+
+INSERT IMAGE HERE
+
+## Sorting
+
+You can sort by ratings or prices. 
+
+INSERT IMAGE HERE
+
+## Table of Items
+
+There is a table of items that shows all the items including price, ratings, name, and a image of the item.
+
+INSERT IMAGE HERE
+
+##
 
 # :muscle: What's next for future development?
 
