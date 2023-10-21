@@ -76,13 +76,13 @@ flask run
 3. Fixed responsiveness bugs with the search bar
 4. A smoother dropdown added to the UI
 
-INSERT IMAGE HERE
+<p align="center"><img width="500" src="./assets/Slash_UI.png"></p>
 
 ## :camera: Scraping images
 
 We successfully scraped images from websites. This can be displayed in the table.
 
-INSERT IMAGE HERE
+<p align="center"><img width="500" src="./assets/Slash_Item.png"></p>
 
 ## :train2: Added code coverage
 
