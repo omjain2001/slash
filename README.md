@@ -76,6 +76,7 @@ flask run
 3. Fixed responsiveness bugs with the search bar
 4. A smoother dropdown added to the UI
 5. New layout where there is no table. Instead, it is a grid layout.
+6. Responsive for any screen size, including smartphones.
 
 <p align="center"><img width="700" src="./assets/Slash_UI.png"></p>
 
@@ -84,10 +85,6 @@ flask run
 We successfully scraped images from websites. This can be displayed in the UI.
 
 <p align="center"><img width="200" src="./assets/Slash_Item.png"></p>
-
-## :train2: Added code coverage
-
-Increased code coverage from ```70%``` to ```a new percentage```.
 
 ## :red_car: Created Diagram for Code Flow
 
@@ -101,25 +98,23 @@ We removed the command line interface as the UI is easier for the average user.
 
 # :golf: How to Use the UI 
 
-## Search and Filters
+## Search
 
-There are filters to show how many items are displayed and search for specific items. On top of this, you can pick your currency type.
+There is a search bar that users will see when opening this application. Simply type the desired item in the box.
 
-INSERT IMAGE HERE
+<p align="center"><img width="700" src="./assets/Slash_Search.png"></p>
 
 ## Sorting
 
-You can sort by ratings or prices. 
+You can sort by ratings or prices using the dropdown below the search bar.
 
-INSERT IMAGE HERE
+<p align="center"><img width="700" src="./assets/Slash_Sort.png"></p>
 
-## Table of Items
+## Grid of Items
 
-There is a table of items that shows all the items including price, ratings, name, and a image of the item.
+There is a grid of items that shows all the items including name, ratings, price, store name, and an image of the item.
 
-INSERT IMAGE HERE
-
-##
+<p align="center"><img width="700" src="./assets/Slash_UI.png"></p>
 
 # :muscle: What's next for future development?
 
