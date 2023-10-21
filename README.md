@@ -53,15 +53,15 @@ pip3 install -r requirements.txt
 1. After completing the <a href="#floppy_disk-initial-steps">Initial Steps</a> and all project dependencies are installed. 
 
 2. Make sure you are in the base directory. 
-3. Use the ```flask run``` command.
+3. Use the ```python -m flask run``` command.
 ```
 MAC
-export FLASK_APP=./src/modules/app
-flask run
+export FLASK_APP=src/modules/app
+python3 -m flask run
 
 Windows
-set FLASK_APP=.\src\modules\app 
-flask run
+set FLASK_APP=src\modules\app 
+python -m flask run
 ```
 4. Once flask is running, open your internet browser and type ```http://127.0.0.1:5000/``` into the search bar.
 
