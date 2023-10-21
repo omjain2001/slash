@@ -102,13 +102,13 @@ We removed the command line interface as the UI is easier for the average user.
 
 There is a search bar that users will see when opening this application. Simply type the desired item in the box.
 
-<p align="center"><img width="700" src="./assets/Slash_Search.png"></p>
+<p align="center"><img width="500" src="./assets/Slash_Search.png"></p>
 
 ## Sorting
 
 You can sort by ratings or prices using the dropdown below the search bar.
 
-<p align="center"><img width="700" src="./assets/Slash_Sort.png"></p>
+<p align="center"><img width="300" src="./assets/Slash_Sort.png"></p>
 
 ## Grid of Items
 
