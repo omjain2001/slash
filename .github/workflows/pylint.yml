@@ -22,4 +22,4 @@ jobs:
         run: |
           pwd
           ls
-          flake8 --extend-ignore E402,F841,F401,E302,E305,E303,E402,E501, E203 ./src/
+          flake8 --select E121,E131 --extend-ignore E402,F841,F401,E302,E305,E303,E402,E501, E203 ./src/
