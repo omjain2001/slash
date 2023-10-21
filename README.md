@@ -75,14 +75,15 @@ flask run
    * Filter bar
 3. Fixed responsiveness bugs with the search bar
 4. A smoother dropdown added to the UI
+5. New layout where there is no table. Instead, it is a grid layout.
 
-<p align="center"><img width="500" src="./assets/Slash_UI.png"></p>
+<p align="center"><img width="700" src="./assets/Slash_UI.png"></p>
 
 ## :camera: Scraping images
 
-We successfully scraped images from websites. This can be displayed in the table.
+We successfully scraped images from websites. This can be displayed in the UI.
 
-<p align="center"><img width="500" src="./assets/Slash_Item.png"></p>
+<p align="center"><img width="200" src="./assets/Slash_Item.png"></p>
 
 ## :train2: Added code coverage
 
