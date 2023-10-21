@@ -2,15 +2,14 @@
 
 <p align="center"><img width="500" src="./assets/slash.png"></p>
 
-[![GitHub license](https://img.shields.io/github/license/TommasU/slash)](https://github.com/TommasU/slash/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/jashgopani/slash)](https://github.com/jashgopani/slash/blob/main/LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5739350.svg)](https://doi.org/10.5281/zenodo.5739350)
 ![Github](https://img.shields.io/badge/language-python-red.svg)
-[![GitHub issues](https://img.shields.io/github/issues/TommasU/slash)](https://github.com/TommasU/slash/issues)
-[![Github closes issues](https://img.shields.io/github/issues-closed-raw/TommasU/slash)](https://github.com/TommasU/slash/issues?q=is%3Aissue+is%3Aclosed)
-[![Github closed pull requests](https://img.shields.io/github/issues-pr-closed/SEProjGrp5/slash)](https://github.com/TommasU/slash/pulls?q=is%3Apr+is%3Aclosed)
-[![codecov](https://codecov.io/gh/TommasU/slash/branch/main/graph/badge.svg?token=MGTU44PI4F)](https://codecov.io/gh/TommasU/slash)
-[![Pylint](https://github.com/SEProjGrp5/slash/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/TommasU/slash/actions/workflows/pylint.yml)
-[![Python Style Checker](https://github.com/SEProjGrp5/slash/actions/workflows/style_checker.yml/badge.svg?branch=main)](https://github.com/TommasU/slash/actions/workflows/style_checker.yml)
+[![GitHub issues](https://img.shields.io/github/issues/jashgopani/slash)](https://github.com/jashgopani/slash/issues)
+[![Github closes issues](https://img.shields.io/github/issues-closed-raw/jashgopani/slash)](https://github.com/jashgopani/slash/issues?q=is%3Aissue+is%3Aclosed)
+[![Github closed pull requests](https://img.shields.io/github/issues-pr-closed/SEProjGrp5/slash)](https://github.com/jashgopani/slash/pulls?q=is%3Apr+is%3Aclosed)
+[![Pylint](https://github.com/jashgopani/slash/actions/workflows/pylint.yml/badge.svg)](https://github.com/jashgopani/slash/actions/workflows/pylint.yml)
+[![Python Style Checker](https://github.com/jashgopani/slash/actions/workflows/style_checker.yml/badge.svg)](https://github.com/jashgopani/slash/actions/workflows/style_checker.yml)
 
 Slash is a tool that scrapes the most popular e-commerce websites to get the best deals on searched items across these websites. 
 - **Fast**: With slash, you can save over 50% of your time by comparing deals across websites within seconds
