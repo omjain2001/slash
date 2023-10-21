@@ -7,7 +7,7 @@ this file. If not, please write to: secheaper@gmail.com
 
 """
 
-from src.modules import formatter
+from src import formatter
 from bs4 import BeautifulSoup
 
 
