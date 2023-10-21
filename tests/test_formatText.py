@@ -7,7 +7,7 @@ this file. If not, please write to: secheaper@gmail.com
 
 """
 
-from src.modules.formatter import formatSearchQuery, formatTitle
+from src.formatter import formatSearchQuery, formatTitle
 
 def test_formatSearchQuery():
     """
