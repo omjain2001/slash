@@ -1,5 +1,3 @@
-INSERT VIDEO HERE
-
 <p align="center"><img width="500" src="./assets/slash.png"></p>
 
 [![GitHub license](https://img.shields.io/github/license/jashgopani/slash)](https://github.com/jashgopani/slash/blob/main/LICENSE)
@@ -18,6 +16,10 @@ Slash is a tool that scrapes the most popular e-commerce websites to get the bes
 - **Powerful**: Quickly alter the commands to get desired results
 <p align="center">
 Checkout our newest Features! Mini Version and Full version now showcasing new sets of improvements.
+
+# :movie_camera: Demo
+
+[![Slash Demo](https://img.youtube.com/vi/4jWzkKmwJTM/0.jpg)](https://www.youtube.com/watch?v=4jWzkKmwJTM)
 
 # :exclamation: Needed Software
 1. Python 3 (Version 3.9.7 or lower)
