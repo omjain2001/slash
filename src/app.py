@@ -1,9 +1,28 @@
-from flask import Flask, request, send_from_directory
+from functools import wraps
+from flask import Flask, request, send_from_directory, redirect, session
 from flask.json import jsonify
 from src.scraper import driver
+import pymongo
 
 app = Flask(__name__, static_folder='./frontend', static_url_path='')
+app.secret_key = b'\xc3\x08\xde\x13{E\xad\x0f\xf4T\x81\xc8\x92\x84\xe9\x14'
+#Database config
+# app.config["MONGO_URI"] = "mongodb+srv://se_project3:1234@cluster0.cfulwip.mongodb.net/?retryWrites=true&w=majority"
+client = pymongo.MongoClient('mongodb+srv://se_project3:1234@cluster0.cfulwip.mongodb.net/?retryWrites=true&w=majority')
+db = client.slashUsers
+#Routes
+from src.user import routes
 
+#Decorator method to make login required
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else: 
+            return redirect('/')
+    
+    return wrap
 
 @app.route("/")
 def landingpage():
