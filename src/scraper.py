@@ -1,4 +1,5 @@
 from datetime import datetime
+from math import isnan
 import os
 import pandas as pd
 import re
@@ -62,7 +63,7 @@ def searchWalmart(query, df_flag, currency):
             res.select("div.lh-copy"),
             res.select("a"),
         )
-        ratings = res.findAll("span", {"class": "w_DE"}, text=pattern)
+        ratings = res.findAll("span", {"class": "w_iUH7"}, text=pattern)
         num_ratings = res.findAll("span", {"class": "sans-serif gray f7"})
         trending = res.select("span.w_Cs")
         if len(trending) > 0:
@@ -246,6 +247,13 @@ def condense_helper(result_condensed, list, num):
                 result_condensed.append(p)
 
 
+def temp(x):
+    x = re.sub("[^0-9]+", "", x)
+    deci = x[len(x)-2:len(x)]
+    x = x[0:len(x)-2] + "." + deci
+    return float(x) if len(re.findall("^[0-9]+", x)) > 0 else 0
+
+
 def driver(
     product, currency, num=None, df_flag=0, csv=False, cd=None, ui=False, sort=None
 ):
@@ -270,6 +278,7 @@ def driver(
         result_condensed = pd.DataFrame.from_dict(
             result_condensed, orient="columns")
         results = pd.DataFrame.from_dict(results, orient="columns")
+
         if currency == "" or currency is None:
             results = results.drop(columns="converted price")
             result_condensed = result_condensed.drop(columns="converted price")
@@ -303,6 +312,9 @@ def driver(
                 link = "http://" + link
                 p["link"] = link
 
+        result_condensed = pd.DataFrame(result_condensed)
+        result_condensed["price"] = result_condensed["price"].map(temp)
+
         if sort is not None:
             result_condensed = pd.DataFrame(result_condensed)
             if sort == "rades":
@@ -320,5 +332,5 @@ def driver(
             result_condensed = result_condensed.to_csv(
                 file_name, index=False, header=results.columns
             )
-            # print(result_condensed)
+        result_condensed = result_condensed.to_dict(orient="records")
     return result_condensed
