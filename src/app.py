@@ -2,13 +2,19 @@ from functools import wraps
 from flask import Flask, request, send_from_directory, redirect, session
 from flask.json import jsonify
 from src.scraper import driver
-import pymongo
+from dotenv import load_dotenv
+import pymongo, os
 
 app = Flask(__name__, static_folder='./frontend', static_url_path='')
 app.secret_key = b'\xc3\x08\xde\x13{E\xad\x0f\xf4T\x81\xc8\x92\x84\xe9\x14'
 #Database config
-# app.config["MONGO_URI"] = "mongodb+srv://se_project3:1234@cluster0.cfulwip.mongodb.net/?retryWrites=true&w=majority"
-client = pymongo.MongoClient('mongodb+srv://se_project3:1234@cluster0.cfulwip.mongodb.net/?retryWrites=true&w=majority')
+
+load_dotenv()
+username = os.environ.get("USERNAME")
+password = os.environ.get("PASSWORD")
+mongoURI = "mongodb+srv://"+username+":"+password+"@cluster0.cfulwip.mongodb.net/?retryWrites=true&w=majority"
+client = pymongo.MongoClient(mongoURI)
+
 db = client.slashUsers
 #Routes
 from src.user import routes
