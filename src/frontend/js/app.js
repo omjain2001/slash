@@ -3,8 +3,10 @@ const SERVER_URL = window.origin;
 
 const reducer = (state, { type, data }) => {
 	switch (type) {
+		case 'CLEAR_FILTER':
+			return { ...state, filteredSearchResults: [] };
 		case 'UPDATE_PRODUCTS':
-			return { ...state, searchResults: data, filteredSearchResults: data };
+			return { ...state, searchResults: data };
 		case 'UPDATE_SEARCH_STATUS':
 			return { ...state, searchStatus: data.status, searchResCode: data.resCode };
 		case 'ADD_FILTER':
@@ -13,7 +15,9 @@ const reducer = (state, { type, data }) => {
 				...state,
 				filteredSearchResults: filterSearchResults(
 					{ ...existingFilters, ...data },
-					state.searchResults
+					state.filteredSearchResults.length > 0
+						? state.filteredSearchResults
+						: state.searchResults
 				),
 			};
 		default:
@@ -36,7 +40,8 @@ function App({}) {
 			<div class='d-flex flex-column gap-2'>
 				<Navbar searchStatus={state.searchStatus} dispatch={dispatch} />
 				<ProductResults
-					searchResults={state.filteredSearchResults}
+					filteredSearchResults={state.filteredSearchResults}
+					searchResults={state.searchResults}
 					searchResCode={state.searchResCode}
 					dispatch={dispatch}
 				/>
@@ -114,6 +119,12 @@ function Navbar({ searchStatus, dispatch }) {
 }
 
 function FilterBar({ dispatch }) {
+	const initialConditions = {
+		selectedIndex: -1,
+		sortOrder: 0,
+		range: [0, Number.MAX_SAFE_INTEGER, false],
+	};
+	const [conditions, setConditions] = useState(initialConditions);
 	return (
 		<>
 			<div className='d-inline-flex gap-2 justify-content-start'>
@@ -121,8 +132,10 @@ function FilterBar({ dispatch }) {
 					type='SORT'
 					title='Sort By'
 					iconName='swap-vertical-outline'
-					options={['Price', 'Marketplace', 'Ratings']}
+					options={['Price', 'Rating', 'Reviews']}
 					dispatch={dispatch}
+					conditions={conditions}
+					setConditions={setConditions}
 				/>
 				<Filter
 					type='RANGE'
@@ -130,19 +143,39 @@ function FilterBar({ dispatch }) {
 					iconName='cash-outline'
 					dispatch={dispatch}
 					objProperty='price'
+					conditions={conditions}
+					setConditions={setConditions}
 				/>
+				<button
+					type='button'
+					class='btn btn-danger btn-sm rounded-pill px-3'
+					onClick={() => {
+						setConditions(initialConditions);
+						dispatch({ type: 'CLEAR_FILTER' });
+					}}>
+					Clear Filter
+				</button>
 			</div>
 		</>
 	);
 }
 
-function Filter({ type, title, options, iconName, objProperty, dispatch }) {
-	const initialConditions = {
-		selectedIndex: -1,
-		sortOrder: 0,
-		range: [0, Number.MAX_SAFE_INTEGER, false],
-	};
-	const [conditions, setConditions] = useState(initialConditions);
+function Filter({
+	type,
+	title,
+	options,
+	iconName,
+	objProperty,
+	dispatch,
+	conditions,
+	setConditions,
+}) {
+	// const initialConditions = {
+	// 	selectedIndex: -1,
+	// 	sortOrder: 0,
+	// 	range: [0, Number.MAX_SAFE_INTEGER, false],
+	// };
+	// const [conditions, setConditions] = useState(initialConditions);
 
 	function updateCondition(current, attribute, newValue) {
 		const nc = { ...current };
@@ -158,9 +191,11 @@ function Filter({ type, title, options, iconName, objProperty, dispatch }) {
 
 		switch (type) {
 			case 'SORT':
-				if (conditions.selectedIndex > -1 && conditions.sortOrder === 0) {
-					setConditions(c => updateCondition(c, 'sortOrder', -1));
-				}
+				// if (conditions.selectedIndex > -1 && conditions.sortOrder === 0) {
+				// 	// setConditions(c => updateCondition(c, 'sortOrder', -1));
+				// 	setConditions({ ...conditions, sortOrder: -1, selectedIndex: 0 });
+				// 	dispatchAddFilterForSort(data, filterKey);
+				// }
 
 				return (
 					<>
@@ -177,8 +212,12 @@ function Filter({ type, title, options, iconName, objProperty, dispatch }) {
 										conditions.selectedIndex > -1
 									}
 									onChange={e => {
-										setConditions(c => updateCondition(c, 'sortOrder', -1));
-										dispatchAddFilterForSort(data, filterKey);
+										// setConditions(c => updateCondition(c, 'sortOrder', -1));
+										dispatchAddFilterForSort(data, filterKey, {
+											...conditions,
+											sortOrder: -1,
+										});
+										setConditions({ ...conditions, sortOrder: -1 });
 									}}
 								/>
 								<label class='form-check-label' for='radioSortOrder'>
@@ -200,8 +239,12 @@ function Filter({ type, title, options, iconName, objProperty, dispatch }) {
 										conditions.selectedIndex > -1
 									}
 									onChange={e => {
-										setConditions(c => updateCondition(c, 'sortOrder', 1));
-										dispatchAddFilterForSort(data, filterKey);
+										// setConditions(c => updateCondition(c, 'sortOrder', 1));
+										dispatchAddFilterForSort(data, filterKey, {
+											...conditions,
+											sortOrder: 1,
+										});
+										setConditions({ ...conditions, sortOrder: 1 });
 									}}
 								/>
 								<label class='form-check-label' for='radioSortOrder'>
@@ -225,10 +268,14 @@ function Filter({ type, title, options, iconName, objProperty, dispatch }) {
 											conditions.selectedIndex === index
 										}
 										onChange={e => {
-											setConditions(c =>
-												updateCondition(c, 'selectedIndex', index)
-											);
-											dispatchAddFilterForSort(data, filterKey);
+											// setConditions(c =>
+											// 	updateCondition(c, 'selectedIndex', index)
+											// );
+											dispatchAddFilterForSort(data, filterKey, {
+												...conditions,
+												selectedIndex: index,
+											});
+											setConditions({ ...conditions, selectedIndex: index });
 										}}
 									/>
 									<label
@@ -254,21 +301,34 @@ function Filter({ type, title, options, iconName, objProperty, dispatch }) {
 									aria-label='Dollar amount (with dot and two decimal places)'
 									value={!isEmpty(conditions) ? conditions.range[0] : 0}
 									onChange={e => {
-										if (e.target.value < conditions['range'][1]) {
-											setConditions(c =>
-												updateCondition(c, 'range', [
-													Math.max(e.target.value, 0),
-													c.range[1],
-													c.range[2],
-												])
-											);
+										setConditions(c =>
+											updateCondition(c, 'range', [
+												Math.max(e.target.value, 0),
+												c.range[1],
+												c.range[2],
+											])
+										);
 
-											//update filters in appState
-											data[filterKey] = p =>
-												p[objProperty] >= conditions.range[0] &&
-												p[objProperty] <= conditions.range[1];
-											dispatch({ type: 'ADD_FILTER', data });
-										}
+										//update filters in appState
+										// data[filterKey] = p =>
+										// 	p[objProperty] >= conditions.range[0] &&
+										// 	p[objProperty] <= conditions.range[1];
+										// dispatch({ type: 'ADD_FILTER', data });
+										// if (e.target.value < conditions['range'][1]) {
+										// 	setConditions(c =>
+										// 		updateCondition(c, 'range', [
+										// 			Math.max(e.target.value, 0),
+										// 			c.range[1],
+										// 			c.range[2],
+										// 		])
+										// 	);
+
+										// 	//update filters in appState
+										// 	data[filterKey] = p =>
+										// 		p[objProperty] >= conditions.range[0] &&
+										// 		p[objProperty] <= conditions.range[1];
+										// 	dispatch({ type: 'ADD_FILTER', data });
+										// }
 									}}
 									placeholder='Min'
 								/>
@@ -281,41 +341,57 @@ function Filter({ type, title, options, iconName, objProperty, dispatch }) {
 									aria-label='Dollar amount (with dot and two decimal places)'
 									value={!isEmpty(conditions) ? conditions.range[1] : 100}
 									onChange={e => {
-										if (conditions['range'][0] < e.target.value)
-											setConditions(c =>
-												updateCondition(conditions, 'range', [
-													c.range[0],
-													Math.min(
-														e.target.value,
-														Number.MAX_SAFE_INTEGER
-													),
-													c.range[2],
-												])
-											);
+										setConditions(c =>
+											updateCondition(conditions, 'range', [
+												c.range[0],
+												Math.min(e.target.value, Number.MAX_SAFE_INTEGER),
+												c.range[2],
+											])
+										);
+										// if (conditions['range'][0] < e.target.value)
+										// 	setConditions(c =>
+										// 		updateCondition(conditions, 'range', [
+										// 			c.range[0],
+										// 			Math.min(
+										// 				e.target.value,
+										// 				Number.MAX_SAFE_INTEGER
+										// 			),
+										// 			c.range[2],
+										// 		])
+										// 	);
 									}}
 									placeholder='max'
 								/>
 								<span class='input-group-text'>Max</span>
 							</div>
 						</li>
+						<div class='d-flex justify-content-center my-2'>
+							<button
+								class='btn btn-primary'
+								onClick={() => dispatchAddFilterForRange(data, filterKey)}>
+								Apply
+							</button>
+						</div>
 					</>
 				);
 			default:
 				return <></>;
 		}
 	}
-	function dispatchAddFilterForSort(data, filterKey) {
+
+	function dispatchAddFilterForSort(data, filterKey, conditions) {
 		if (conditions['selectedIndex'] > -1 && conditions['sortOrder'] != 0) {
-			const filterAttribute = options[conditions['selectedIndex']];
+			let filterAttribute = options[conditions['selectedIndex']].toLowerCase();
+			if (filterAttribute == 'reviews') filterAttribute = 'noOfRatings';
 			const ascendingFilterFunction = (a, b) => {
-				if (a[filterAttribute] > b[filterAttribute]) return 1;
-				else if (a[filterAttribute] < b[filterAttribute]) return -1;
+				if (a[filterAttribute] < b[filterAttribute]) return -1;
+				else if (a[filterAttribute] > b[filterAttribute]) return 1;
 				return 0;
 			};
 
 			const descendingFilterFunction = (a, b) => {
-				if (a[filterAttribute] > b[filterAttribute]) return 1;
-				else if (a[filterAttribute] < b[filterAttribute]) return -1;
+				if (a[filterAttribute] > b[filterAttribute]) return -1;
+				else if (a[filterAttribute] < b[filterAttribute]) return 1;
 				return 0;
 			};
 			data[filterKey] =
@@ -325,6 +401,17 @@ function Filter({ type, title, options, iconName, objProperty, dispatch }) {
 			dispatch({ type: 'ADD_FILTER', data });
 		}
 	}
+
+	function dispatchAddFilterForRange(data, filterKey) {
+		const filter = ele => {
+			if (ele.price >= conditions['range'][0] && ele.price <= conditions['range'][1])
+				return ele;
+		};
+
+		data[filterKey] = filter;
+		dispatch({ type: 'ADD_FILTER', data });
+	}
+
 	return (
 		<div class='btn-group'>
 			<button type='button' class='btn btn-outline-secondary text-center rounded-start-pill'>
@@ -340,24 +427,27 @@ function Filter({ type, title, options, iconName, objProperty, dispatch }) {
 			</button>
 			<ul class='dropdown-menu w-auto'>
 				{getDropdownContentBasedOnType()}
-				<li>
+				{/* <li>
 					<hr class='dropdown-divider' />
 				</li>
 				<li class='dropdown-item fs-6'>
 					<button
 						type='button'
 						class='btn btn-danger btn-sm rounded-pill'
-						onClick={_e => setConditions({})}>
+						onClick={() => {
+							setConditions(initialConditions);
+							dispatch({ type: 'CLEAR_FILTER' });
+						}}>
 						Clear Filter
 					</button>
-				</li>
+				</li> */}
 			</ul>
 		</div>
 	);
 }
 
-function ProductResults({ searchResults, searchResCode, dispatch }) {
-	const products = searchResults;
+function ProductResults({ searchResults, filteredSearchResults, searchResCode, dispatch }) {
+	const products = filteredSearchResults.length > 0 ? filteredSearchResults : searchResults;
 	if (products && products.length > 0 && searchResCode != -1) {
 		return (
 			<div className='container-fluid d-flex flex-column gap-2 px-4'>
@@ -378,6 +468,7 @@ function ProductResults({ searchResults, searchResCode, dispatch }) {
 									currency={p.currency}
 									productURL={p.productURL}
 									noOfRatings={p.noOfRatings}
+									paymentMode={p.paymentMode}
 								/>
 							);
 						})}
@@ -407,6 +498,7 @@ function ProductCard({
 	currency,
 	productURL,
 	noOfRatings,
+	paymentMode,
 }) {
 	const finalRating = Math.round(rating);
 	return (
@@ -448,7 +540,8 @@ function ProductCard({
 			</p>
 
 			<div class='card-footer text-body-secondary d-flex justify-content-between fw-bold'>
-				{price} <span class='badge text-bg-primary'>{marketplace}</span>
+				{'$' + price + (paymentMode === 'monthly' ? '/month' : '')}
+				<span class='badge text-bg-primary'>{marketplace}</span>
 			</div>
 		</div>
 	);
@@ -475,6 +568,7 @@ async function fetchProducts(query) {
 			noOfRatings: p['no of ratings'],
 			price: p['price'],
 			marketplace: p['website'],
+			paymentMode: p['paymentMode'],
 		}))
 		.map(p => {
 			const similarity = smithWatermanSimilarity(query, p.title);
@@ -581,14 +675,13 @@ function filterSearchResults(filters, results) {
 	const sortingFilters = Object.entries(filters).filter(fe => {
 		return fe[0].startsWith('SORT');
 	});
-
 	if (rangeBasedFilters && rangeBasedFilters.length > 0) {
 		finalResults = rangeBasedFilters.reduce((fRes, currFe) => {
 			return fRes.filter(currFe[1]);
 		}, finalResults);
 	}
 	if (sortingFilters && sortingFilters.length > 0) {
-		finalResults = rangeBasedFilters.reduce((fRes, currFe) => {
+		finalResults = sortingFilters.reduce((fRes, currFe) => {
 			return fRes.sort(currFe[1]);
 		}, finalResults);
 	}
