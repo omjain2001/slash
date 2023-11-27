@@ -4,13 +4,12 @@ name: Code Coverage
 
 on:
   push:
-    branches: [ '*' ]
+    branches: ["*"]
   pull_request:
-    branches: [ '*' ]
+    branches: ["*"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,9 +20,10 @@ jobs:
 
       - name: Generate coverage report
         run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install pytest
-          pip install pytest-cov
+          # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          python -m pip install flask pandas bs4 requests pytest pytest-mock pytest-cov passlib
+          # pip install pytest
+          # pip install pytest-cov
           echo $PWD
           export PYTHONPATH=$PWD
           pytest --cov=./ --cov-report=xml
