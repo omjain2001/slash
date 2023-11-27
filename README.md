@@ -10,8 +10,12 @@
 [![Github closes issues](https://img.shields.io/github/issues-closed-raw/omjain2001/slash)](https://github.com/omjain2001/slash/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/omjain2001/slash)](https://github.com/omjain2001/slash/pulls?q=is%3Apr+is%3Aclosed)
 [![Pylint](https://github.com/omjain2001/slash/actions/workflows/pylint.yml/badge.svg)](https://github.com/omjain2001/slash/actions/workflows/pylint.yml)
+[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/omjain2001/slash/pytest.yml?label=Pytest)](https://github.com/omjain2001/slash/actions/workflows/pytest.yml)
+[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/omjain2001/slash/python-package.yml?label=Package)](https://github.com/omjain2001/slash/actions/workflows/python-package.yml)
 [![Python Style Checker](https://github.com/omjain2001/slash/actions/workflows/style_checker.yml/badge.svg)](https://github.com/omjain2001/slash/actions/workflows/style_checker.yml)
 ![Codecov](https://img.shields.io/codecov/c/github/omjain2001/slash)
+![GitHub contributors](https://img.shields.io/github/contributors/omjain2001/slash?logo=github)
+![GitHub forks](https://img.shields.io/github/forks/omjain2001/slash?logo=github)
 
 Slash is a tool that scrapes the most popular e-commerce websites to get the best deals on searched items across these websites.
 
@@ -41,7 +45,7 @@ Checkout our newest Features! Mini Version and Full version now showcasing new s
 - Then, clone the following repo:
 
 ```
-https://github.com/jashgopani/slash.git
+https://github.com/omjain2001/slash.git
 ```
 
 - Finally, `cd` into the local repository.
@@ -70,28 +74,29 @@ pip3 install -r requirements.txt
 
 ```
 MAC
-export FLASK_APP=src/modules/app
-python3 -m flask run
+python3 -m flask --app src/app.py run
 
 Windows
-set FLASK_APP=src\modules\app
-python -m flask run
+python -m flask --app src/app.py run
 ```
 
 4. Once flask is running, open your internet browser and type `http://127.0.0.1:5000/` into the search bar.
 
-# :dizzy: What's New in Phase 4
+# :dizzy: What's New in Phase 5
 
 ## :computer: Updated UI
 
-1. UI looks more polished
-2. Added new components to the UI including:
-   - Navbar
-   - Filter bar
-3. Fixed responsiveness bugs with the search bar
-4. A smoother dropdown added to the UI
-5. New layout where there is no table. Instead, it is a grid layout.
-6. Responsive for any screen size, including smartphones.
+1. Unveiled innovative components:
+   - `Authentication` mechanism
+   - Personalized `Profile` management
+   - Streamlined `Favorites` feature
+   - Incorporated `Personalized Recommendations` based on user preferences
+2. Empowered users to curate a selection of preferred products within their `Favorites` for convenient future access.
+3. Rectified issues pertaining to the responsiveness of the search bar, ensuring seamless user interaction.
+4. Implemented an enhanced and more fluid dropdown interface, elevating the overall user experience.
+5. Successfully addressed and resolved challenges associated with the `Filter` functionality, ensuring optimal performance.
+6. Achieved comprehensive responsiveness across diverse screen dimensions, encompassing seamless usability on smartphones.
+7. Introduced an advanced sorting capability, enabling users to refine product searches based on `Reviews` for a more tailored shopping experience.
 
 <p align="center"><img width="700" src="./assets/Slash_UI.png"></p>
 
@@ -107,39 +112,50 @@ Made a diagram to digest how the code flows for future contributors.
 
 <p align="center"><img width="500" src="./docs/SlashDesignDiagram.png"></p>
 
-## 💿: Deprecated Feature
+# :golf: How to use `Slash`
 
-We removed the command line interface as the UI is easier for the average user.
+## Authentication
 
-# :golf: How to Use the UI
+User will require to login/signup before moving to the dashboard. Enter your username and password to login in the application
 
 ## Search
 
-There is a search bar that users will see when opening this application. Simply type the desired item in the box.
+There is a search bar that users will see after login. Simply type the desired item in the box.
 
 <p align="center"><img width="500" src="./assets/Slash_Search.png"></p>
 
 ## Sorting
 
-You can sort by ratings or prices using the dropdown below the search bar.
+You can sort by prices, ratings, and reviews using the dropdown below the search bar. The sort can be from high-to-low or low-to-high. Moreover, you can set the range of price using `Price` option.
 
 <p align="center"><img width="300" src="./assets/Slash_Sort.png"></p>
 
 ## Grid of Items
 
-There is a grid of items that shows all the items including name, ratings, price, store name, and an image of the item.
+There is a grid of items that shows all the products including name, ratings, price, store name, and an image of the item.
 
 <p align="center"><img width="700" src="./assets/Slash_UI.png"></p>
+
+## :raising_hand_man: Profile
+
+You can view and edit your profile details in the `Profile` tab.
+
+## :heart: Favorites
+
+You can mark desired product as a `Favorite` that can be accessed later.
+
+## :robot: Personalized Recommendation
+
+You can set your preferences and get a personalized list of products that caters to your preferences.
 
 # :muscle: What's next for future development?
 
 <p align="center"><img width="700" src="./assets/SlashAnimation.gif"></p>
 
-- Creating ordering and payment functionality for customers to directly order from command line
+- Creating ordering and payment functionality for customers
 - Take coupons or promo codes into consideration
 - Provide parameters like in-store availability or inventory
 - Increase the number of filters.
-- Add login for the web version.
 - Host on a docker container
 
 ## :thought_balloon: Use Case
@@ -163,11 +179,11 @@ We saw potential in this as e-commerce is a very common tool that people use to 
 
 # :sparkles: Contributors
 
-- Akhilesh Neeruganti
-- Jash Gopani
-- Rohan Ajmera
-- Hemil Mehta
+- Sakshi Mahadik
+- Jaiwin Shah
+- Jay Shah
+- Om Jain
 
 ## :email: Support
 
-For any queries and help, please reach out to us at: neerua08@gmail.com
+For any queries and help, please reach out to us at: omjain639@gmail.com
