@@ -1,11 +1,54 @@
-from flask import Flask, request, send_from_directory
+from functools import wraps
+from flask import Flask, request, send_from_directory, redirect, session, render_template
 from flask.json import jsonify
 from src.scraper import driver
+from dotenv import load_dotenv
+import pymongo
+import os
 
 app = Flask(__name__, static_folder='./frontend', static_url_path='')
+app.secret_key = b'\xc3\x08\xde\x13{E\xad\x0f\xf4T\x81\xc8\x92\x84\xe9\x14'
+# Database config
+
+load_dotenv()
+os.environ['USERNAME'] = 'se_project3'
+os.environ['PASSWORD'] = '1234'
+
+username = os.environ.get("USERNAME")
+password = os.environ.get("PASSWORD")
+mongoURI = "mongodb+srv://" + username + ":" + password + \
+    "@cluster0.cfulwip.mongodb.net/?retryWrites=true&w=majority"
+client = pymongo.MongoClient(mongoURI)
+
+db = client.slashUsers
+# Routes
+
+# Decorator method to make login required
+
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            return redirect('/signIn')
+
+    return wrap
+
+
+@app.route("/signIn")
+def signIn():
+    return render_template('loginpage.html')
+
+
+@app.route('/signUp')
+def signUp():
+    return render_template('signup.html')
 
 
 @app.route("/")
+@login_required
 def landingpage():
     return send_from_directory(app.static_folder, 'index.html')
 
