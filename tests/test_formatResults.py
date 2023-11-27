@@ -15,18 +15,26 @@ def test_formatResults():
     """
     Checks the formatResults function
     """
-    titles = [BeautifulSoup('<div class="someclass">title  </div>', "html.parser")]
-    prices = [BeautifulSoup('<div class="someclass">$0.99  </div>', "html.parser")]
+    titles = [BeautifulSoup(
+        '<div class="someclass">title  </div>', "html.parser")]
+    prices = [BeautifulSoup(
+        '<div class="someclass">$0.99  </div>', "html.parser")]
     links = []
 
     product = formatter.formatResult(
         "example", titles, prices, links, "", 0, "", None, None, None
     )
     ans = {"title": "title", "price": "$0.99", "website": "example"}
-    print(product["website"], ans["website"])
 
     assert (
         product["title"] == ans["title"]
         and product["price"] == ans["price"]
         and product["website"] == ans["website"]
     )
+    assert (product["paymentMode"] == "flat")
+
+    prices = [BeautifulSoup(
+        '<div class="someclass">$0.99 \n\n\n/month</div>', "html.parser")]
+    product2 = formatter.formatResult(
+        "example", titles, prices, links, "", 0, "", None, None, None)
+    assert (product2["paymentMode"] == "monthly")

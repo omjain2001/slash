@@ -151,8 +151,8 @@ def searchGoogleShopping(query, df_flag, currency):
     query = formatSearchQuery(query)
     URL = f"https://www.google.com/search?tbm=shop&q={query}"
     page = httpsGet(URL)
-    results = page.findAll("div", {"class": "sh-dgr__grid-result"})
 
+    results = page.findAll("div", {"class": "sh-dgr__grid-result"})
     products = []
     pattern = re.compile(r"[0-9]+ product reviews")
     for res in results:
@@ -247,7 +247,7 @@ def condense_helper(result_condensed, list, num):
                 result_condensed.append(p)
 
 
-def temp(x):
+def formatPrice(x):
     x = re.sub("[^0-9]+", "", x)
     deci = x[len(x)-2:len(x)]
     x = x[0:len(x)-2] + "." + deci
@@ -313,7 +313,7 @@ def driver(
                 p["link"] = link
 
         result_condensed = pd.DataFrame(result_condensed)
-        result_condensed["price"] = result_condensed["price"].map(temp)
+        result_condensed["price"] = result_condensed["price"].map(formatPrice)
 
         if sort is not None:
             result_condensed = pd.DataFrame(result_condensed)
