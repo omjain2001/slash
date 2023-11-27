@@ -3,16 +3,19 @@ from src.app import app, login_required
 from src.user.models import User
 from flask import Blueprint
 
-user_blueprint = Blueprint('user', __name__, url_prefix='/user')
+# user_blueprint = Blueprint('user', __name__, url_prefix='/user')
 # @app.route('/user/login', methods=['GET', 'POST'])
 
 
 @app.route('/user/signup', methods=['POST'])
 def signup():
-    return User().signup()
+    if request.method == 'POST':
+        return User().signup()
+    else:
+        return "METHOD NOT ALLOWED"
 
 
-@user_blueprint.route('/user/login', methods=['GET', 'POST'])
+@app.route('/user/login', methods=['GET', 'POST'])
 def login():
     return User().login()
 
