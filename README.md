@@ -3,12 +3,12 @@
 
 </p>
 
-[![GitHub license](https://img.shields.io/github/license/jashgopani/slash)](https://github.com/jashgopani/slash/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/omjain2001/slash)](https://github.com/omjain2001/slash/blob/main/LICENSE)
 [![DOI](https://zenodo.org/badge/706276006.svg)](https://zenodo.org/doi/10.5281/zenodo.10030696)
 ![Github](https://img.shields.io/badge/language-python-red.svg)
-[![GitHub issues](https://img.shields.io/github/issues/jashgopani/slash)](https://github.com/jashgopani/slash/issues)
-[![Github closes issues](https://img.shields.io/github/issues-closed-raw/jashgopani/slash)](https://github.com/jashgopani/slash/issues?q=is%3Aissue+is%3Aclosed)
-[![Github closed pull requests](https://img.shields.io/github/issues-pr-closed/SEProjGrp5/slash)](https://github.com/jashgopani/slash/pulls?q=is%3Apr+is%3Aclosed)
+[![GitHub issues](https://img.shields.io/github/issues/omjain2001/slash)](https://github.com/omjain2001/slash/issues)
+[![Github closes issues](https://img.shields.io/github/issues-closed-raw/omjain2001/slash)](https://github.com/omjain2001/slash/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/omjain2001/slash)](https://github.com/omjain2001/slash/pulls?q=is%3Apr+is%3Aclosed)
 [![Pylint](https://github.com/omjain2001/slash/actions/workflows/pylint.yml/badge.svg)](https://github.com/omjain2001/slash/actions/workflows/pylint.yml)
 [![Python Style Checker](https://github.com/omjain2001/slash/actions/workflows/style_checker.yml/badge.svg)](https://github.com/omjain2001/slash/actions/workflows/style_checker.yml)
 ![Codecov](https://img.shields.io/codecov/c/github/omjain2001/slash)
