@@ -113,3 +113,5 @@ def test_searchWalmart(mocker):
     assert (product["rating"] == ans["rating"])
     assert (product["no of ratings"] == ans["no of ratings"])
     assert (product["paymentMode"] == ans["paymentMode"])
+
+    httpsGetMock.stopAll()
