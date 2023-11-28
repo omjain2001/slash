@@ -15,6 +15,7 @@ class User:
 
     def signup(self):
         # Create user object
+        print("In USER model")
         user = {
             "_id": uuid.uuid4().hex,
             "name": request.form.get('name'),
@@ -30,7 +31,9 @@ class User:
         if db.users.find_one({"email": user['email']}):
             return jsonify({"error": "Email address already in use"}), 400
 
+        print("Hello")
         if db.users.insert_one(user):
+            print("Inserting new user")
             return self.start_session(user)
 
         return jsonify({"error": "Signup failed"}), 400

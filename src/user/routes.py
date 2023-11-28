@@ -9,7 +9,9 @@ from flask import Blueprint
 
 @app.route('/user/signup', methods=['POST'])
 def signup():
+    print("Inside signup")
     if request.method == 'POST':
+        print("Working")
         return User().signup()
     else:
         return "METHOD NOT ALLOWED"

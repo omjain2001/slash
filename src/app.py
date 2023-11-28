@@ -1,4 +1,5 @@
 from functools import wraps
+import secrets
 from flask import Flask, request, send_from_directory, redirect, session, render_template
 from flask.json import jsonify
 from src.scraper import driver
@@ -8,6 +9,7 @@ import os
 
 app = Flask(__name__, static_folder='./frontend', static_url_path='')
 app.secret_key = b'\xc3\x08\xde\x13{E\xad\x0f\xf4T\x81\xc8\x92\x84\xe9\x14'
+
 # Database config
 
 load_dotenv()
@@ -16,8 +18,10 @@ os.environ['PASSWORD'] = '1234'
 
 username = os.environ.get("USERNAME")
 password = os.environ.get("PASSWORD")
-mongoURI = "mongodb+srv://" + username + ":" + password + \
-    "@cluster0.cfulwip.mongodb.net/?retryWrites=true&w=majority"
+
+# mongoURI = "mongodb+srv://" + username + ":" + password + \
+#     "@cluster0.cfulwip.mongodb.net/?retryWrites=true&w=majority"
+mongoURI = "mongodb+srv://se_project3:1234@cluster0.cfulwip.mongodb.net/?retryWrites=true&w=majority"
 client = pymongo.MongoClient(mongoURI)
 
 db = client.slashUsers
@@ -77,3 +81,9 @@ def product_search_filtered():
     if num == "default":
         num = None
     return product_search(product, sort, currency, num)
+
+from src.user import routes
+
+if __name__ == "__main__":
+    # app.config["SECRET_KEY"] = secrets.token_bytes(16)
+    app.run()
