@@ -113,9 +113,19 @@ function Navbar({ searchStatus, dispatch }) {
 					disabled={isLoading}>
 					{isLoading ? Spinner({ sm: true }) : 'Search'}
 				</button>
+				<button class='btn btn-outline-success rounded-pill' onClick={() => navigatePath()}>get Recommendations</button>
+				<button class='btn btn-outline-success rounded-pill' onClick={() => logOut()}>Log Out</button>
 			</form>
 		</nav>
 	);
+}
+
+function logOut() {
+	document.location="/user/signout/"
+}
+
+function navigatePath() {
+	document.location='/navigateToRecommendations'
 }
 
 function FilterBar({ dispatch }) {
@@ -543,8 +553,57 @@ function ProductCard({
 				{'$' + price + (paymentMode === 'monthly' ? '/month' : '')}
 				<span class='badge text-bg-primary'>{marketplace}</span>
 			</div>
+			<button class='card-footer text-body-secondary d-flex justify-content-between fw-bold' onClick={
+				async e => {
+					e.preventDefault();
+					addProduct({
+						title,
+						rating,
+						imgSrc,
+						marketplace,
+						price,
+						currency,
+						productURL,
+						noOfRatings,
+						paymentMode,
+					})
+				}
+			}> Add Product
+			</button>
 		</div>
 	);
+}
+
+async function addProduct({
+	title,
+	rating,
+	imgSrc,
+	marketplace,
+	price,
+	currency,
+	productURL,
+	noOfRatings,
+	paymentMode,
+}) {
+	const data = 
+		{
+			"title": title,
+			"rating": rating,
+			"imgSrc": imgSrc,
+			"marketplace": marketplace,
+			"price": price,
+			"currency": currency,
+			"productURL": productURL,
+			"noOfRatings": noOfRatings,
+			"paymentMode": paymentMode
+		}
+	var titleModified = title.replace(/ /g, "+");
+	console.log('data', data)
+	const response = await fetch(`http://127.0.0.1:5000/user/addProduct?title=${titleModified}&rating=${rating}&imgSrc=${imgSrc}&marketplace=${marketplace}&price=${price}&currency=${currency}&productURL=${productURL}&noOfRatings=${noOfRatings}&paymentMode=${paymentMode}`, {
+		method: 'POST'
+	})
+    const res = await response.json();
+	console.log(res)
 }
 
 function Search() {
@@ -558,6 +617,7 @@ function Search() {
  */
 async function fetchProducts(query) {
 	const response = await fetch(`${SERVER_URL}/search?product_name=${query}`);
+	console.log('query', query)
 	const res = await response.json();
 	let fres = res
 		.map(p => ({

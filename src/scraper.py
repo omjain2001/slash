@@ -157,7 +157,7 @@ def searchGoogleShopping(query, df_flag, currency):
     pattern = re.compile(r"[0-9]+ product reviews")
     for res in results:
         titles, prices, links = (
-            res.select("h4"),
+            res.select("h3.tAxDx"),
             res.select("span.a8Pemb"),
             res.select("a"),
         )
