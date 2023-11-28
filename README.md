@@ -27,7 +27,7 @@ Checkout our newest Features! Mini Version and Full version now showcasing new s
 
 # :movie_camera: Demo
 
-[![Slash Demo](https://img.youtube.com/vi/4jWzkKmwJTM/0.jpg)](https://www.youtube.com/watch?v=4jWzkKmwJTM)
+[![Slash Demo](https://img.youtube.com/vi/4jWzkKmwJTM/0.jpg)](https://youtu.be/c-sh9HXUYwU)
 
 # :exclamation: Needed Software
 
