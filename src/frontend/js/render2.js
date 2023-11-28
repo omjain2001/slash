@@ -1,0 +1,1 @@
+ReactDOM.render(<Recommendations />, document.getElementById('root2'));

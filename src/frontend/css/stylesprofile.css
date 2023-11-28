@@ -1,0 +1,75 @@
+/* Basic styling for the profile page */
+
+/* Resetting defaults */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EBF5FB !important;
+  }
+  
+  /* Container styles */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  /* Header styles */
+  h4 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Card styles */
+  .card {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* List styles */
+  .list {
+    padding: 0;
+  }
+  
+  .list-item {
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .list-item.active {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  
+  /* Image styles */
+  .card-body img {
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  /* Form input styles */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #8c8c8c;
+  }
+  
