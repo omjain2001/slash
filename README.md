@@ -98,13 +98,13 @@ python -m flask --app src/app.py run
 6. Achieved comprehensive responsiveness across diverse screen dimensions, encompassing seamless usability on smartphones.
 7. Introduced an advanced sorting capability, enabling users to refine product searches based on `Reviews` for a more tailored shopping experience.
 
-<p align="center"><img width="700" src="./assets/Slash_UI.png"></p>
+<p align="center"><img width="700" src="./assets/ProductSearch.png"></p>
 
 ## :camera: Scraping images
 
 We successfully scraped images from websites. This can be displayed in the UI.
 
-<p align="center"><img width="200" src="./assets/Slash_Item.png"></p>
+<p align="center"><img width="200" src="./assets/SingleProductItem.png"></p>
 
 ## :red_car: Created Diagram for Code Flow
 
@@ -122,19 +122,20 @@ User will require to login/signup before moving to the dashboard. Enter your use
 
 There is a search bar that users will see after login. Simply type the desired item in the box.
 
-<p align="center"><img width="500" src="./assets/Slash_Search.png"></p>
+<p align="center"><img width="500" src="./assets/HomePage.png"></p>
 
 ## Sorting
 
 You can sort by prices, ratings, and reviews using the dropdown below the search bar. The sort can be from high-to-low or low-to-high. Moreover, you can set the range of price using `Price` option.
 
-<p align="center"><img width="300" src="./assets/Slash_Sort.png"></p>
+<p align="center"><img width="300" src="./assets/SortByPrice.png"></p>
+<p align="center"><img width="300" src="./assets/FilterByRange.png"></p>
 
 ## Grid of Items
 
 There is a grid of items that shows all the products including name, ratings, price, store name, and an image of the item.
 
-<p align="center"><img width="700" src="./assets/Slash_UI.png"></p>
+<p align="center"><img width="700" src="./assets/ProductSearch.png"></p>
 
 ## :raising_hand_man: Profile
 
@@ -147,6 +148,8 @@ You can mark desired product as a `Favorite` that can be accessed later.
 ## :robot: Personalized Recommendation
 
 You can set your preferences and get a personalized list of products that caters to your preferences.
+
+<p align="center"><img width="700" src="./assets/Recommendation.png"></p>
 
 # :muscle: What's next for future development?
 
